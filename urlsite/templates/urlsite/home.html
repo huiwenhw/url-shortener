@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shorten your URL</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'urlsite/css/index.css' %}" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<div id="container text-center">
+		<form class="form-horizontal" action="{% url 'urlsite:short_url' %}" method="post">
+			{% csrf_token %}
+			<p> Your URL here </p>
+			<div class="control-group">
+				<div class="controls">
+					<input type="text" name="shorturl" autocomplete="off" placeholder="Your url">
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit">Submit</button>
+				</div>
+			</div>
+			<div>
+				{% if msg %}
+				<div class="banner">Your generated URL: {{msg}}</div>
+				{% endif %}
+			</div>
+		</form>
+	</div>
+</body>
+</html>
